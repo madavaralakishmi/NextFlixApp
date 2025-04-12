@@ -1,0 +1,40 @@
+{
+  "name": "netflixapp",
+  "version": "1.0.0",
+  "description": "NetFlixApp Using html,Css,React,Redux",
+  "keywords": [
+    "Html",
+    "Css",
+    "React",
+    "Redux",
+    "TailWind"
+  ],
+  "homepage": "https://github.com/madavaralakishmi/NextFlixApp#readme",
+  "bugs": {
+    "url": "https://github.com/madavaralakishmi/NextFlixApp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madavaralakishmi/NextFlixApp.git"
+  },
+  "license": "ISC",
+  "author": "Varalakshmi",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.14.4"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.3"
+  },
+  "browerlist": [
+    "Last 2 chrome version"
+  ]
+}
