@@ -1,9 +1,11 @@
 import ReactDOM from "react-dom/client"
+import { Body } from "./src/components/Body";
+
 
 const App =()=>{
     return(
         <>
-        <h1 className="text-5xl font-bold bg-amber-300 text-red-600">NetFlex Creation</h1>
+         <Body/>
         </>
     )
 
