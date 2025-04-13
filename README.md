@@ -31,7 +31,22 @@ Movie Suggestion
 
 **** If you have big form use formik form
 
-// Steps
+// Steps to follow
     1.Header
-    2.form Section
-    3.Sign up Form
+    2.Routing
+    3.form Section
+    4.Sign up Form
+    5.validation on Form/ form validation
+       useRef Hook / useState Variable we can take input value
+    6.Authentication- using backend as firebase 
+       *.install
+           npm install firebase
+           npm install -g firebase-tools
+           // for hosting run this command 
+                 * firebase login
+                 * firebase init
+                 * firebase deploy
+     7.create sign up / sign in Authentication
+
+              
+//
