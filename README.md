@@ -29,3 +29,9 @@ NetFlix
 Search Bar
 Movie Suggestion
 
+**** If you have big form use formik form
+
+// Steps
+    1.Header
+    2.form Section
+    3.Sign up Form
