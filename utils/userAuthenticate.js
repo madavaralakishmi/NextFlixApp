@@ -4,6 +4,7 @@ import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "fireba
 
 
 const userAuthenticate = (isSignInForm , email , password)=>{
+    let errorMessage = ""
     if(!isSignInForm){
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -15,7 +16,7 @@ const userAuthenticate = (isSignInForm , email , password)=>{
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage)
-            // ..
+            errorMessage=errorMessage
         });
     }else{
         signInWithEmailAndPassword(auth, email, password)
@@ -27,9 +28,10 @@ const userAuthenticate = (isSignInForm , email , password)=>{
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage)
+            errorMessage=errorMessage
         });
     }
+    return errorMessage
 
 }
 

@@ -1,21 +1,31 @@
-import {useState} from "react"
+import {useState , useEffect} from "react"
 import { Header } from "./Header"
 import { useRef } from "react"
 import { validateUserInputValue } from "../../utils/ValidateUserInputValue"
-import userAuthenticate from "../../utils/UserAuthenticate"
+import { auth } from "../../utils/firebase"
+import { useNavigate } from "react-router"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { addUser } from "../../utils/userSlice"
+import { useDispatch } from "react-redux"
 
 export const Login = ()=>{
+
   const [isSignInForm , setisSignInForm] = useState(true)
   const [formErrorRes, setFormErrorRes] = useState("")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
  
   // let ref = useRef(0) => using ref concept on counter
   let name = useRef(null)
   let email = useRef(null);
   let password = useRef(null)
 
+  
+
 
   const handleButton = ()=>{
     // Form Validation 
+    console.log(isSignInForm)
     let validateRes
     if(isSignInForm){
         validateRes = validateUserInputValue(email.current.value , password.current.value) 
@@ -23,11 +33,44 @@ export const Login = ()=>{
         validateRes = validateUserInputValue(email.current.value , password.current.value,name.current.value)} 
     setFormErrorRes(validateRes)
     // console.log(ref.current = ref.current+1) counter update using ref
+   
+    if(formErrorRes !== null) return 
   
-  
-    const userLoginData = userAuthenticate(isSignInForm,email.current.value,password.current.value)
-    console.log(userLoginData)
+    if(!isSignInForm){
+        console.log(name.current.value)
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log(user)
+            //update the profile  and user redux store 
+            updateProfile(user, {displayName: name.current.value})
+                .then(() => {
+                    // Profile updated!
+                    dispatch(addUser({uid:auth.currentUser.uid, name:auth.currentUser.displayName, email:auth.currentUser.email}))
+                    navigate("/browser")
+                }).catch((error) => {email:
+                setFormErrorRes(error.errorMessage)
+            });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode)
+        });
+    }else{
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        navigate("/browser")
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        });
 
+    }
 
   }
    

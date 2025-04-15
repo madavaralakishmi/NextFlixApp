@@ -47,6 +47,10 @@ Movie Suggestion
                  * firebase init
                  * firebase deploy
      7.create sign up / sign in Authentication
-
+     8.user login push that into redux store
+           1.install redux toolkit => npm i -D @reduxjs/toolkit
+           2.npm i react-redux
+     9.created the user redux store with user slice
+     10.update the username and authstate change , click sigin & signout redirect or navigate to browser screen
               
 //
